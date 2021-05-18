@@ -8,8 +8,8 @@ import {
   Grid,
   Typography
 } from '@material-ui/core';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import GetAppIcon from '@material-ui/icons/GetApp';
+import EventIcon from '@material-ui/icons/Event';
+import ReadMoreIcon from '@material-ui/icons/ReadMore';
 
 const BookCard = ({ book, ...rest }) => (
   <Card
@@ -30,8 +30,12 @@ const BookCard = ({ book, ...rest }) => (
       >
         <Avatar
           alt="Book"
-          src={book.media}
+          src={book.volumeInfo.imageLinks.thumbnail}
           variant="square"
+          sx={{
+            height: 150,
+            width: 100
+          }}
         />
       </Box>
       <Typography
@@ -40,14 +44,15 @@ const BookCard = ({ book, ...rest }) => (
         gutterBottom
         variant="h4"
       >
-        {book.title}
+        {book.volumeInfo.title}
       </Typography>
       <Typography
         align="center"
         color="textPrimary"
         variant="body1"
       >
-        {book.description}
+        {book.volumeInfo.description ? book.volumeInfo.description.substring(0, 99) : 'Sem descrição'}
+        {book.volumeInfo.description && book.volumeInfo.description.length > 99 ? '...' : ''}
       </Typography>
     </CardContent>
     <Box sx={{ flexGrow: 1 }} />
@@ -65,14 +70,14 @@ const BookCard = ({ book, ...rest }) => (
             display: 'flex'
           }}
         >
-          <AccessTimeIcon color="action" />
+          <EventIcon color="action" />
           <Typography
             color="textSecondary"
             display="inline"
             sx={{ pl: 1 }}
             variant="body2"
           >
-            Updated 2hr ago
+            {book.volumeInfo.publishedDate ? book.volumeInfo.publishedDate : 'Data indisponível'}
           </Typography>
         </Grid>
         <Grid
@@ -82,16 +87,14 @@ const BookCard = ({ book, ...rest }) => (
             display: 'flex'
           }}
         >
-          <GetAppIcon color="action" />
+          <ReadMoreIcon color="action" />
           <Typography
             color="textSecondary"
             display="inline"
             sx={{ pl: 1 }}
             variant="body2"
           >
-            {book.totalDownloads}
-            {' '}
-            Downloads
+            Detalhes
           </Typography>
         </Grid>
       </Grid>
