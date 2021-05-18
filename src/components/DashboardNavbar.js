@@ -1,9 +1,9 @@
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Hidden from '@material-ui/core/Hidden';
 import {
   AppBar,
   Box,
-  Hidden,
   IconButton,
   Toolbar
 } from '@material-ui/core';
