@@ -16,14 +16,15 @@ const BookList = () => {
   const [books, setBooks] = useState([]);
 
   const searchBooks = (book) => {
-    axios.get(`${apiUrl}/volumes?q=${book}`)
-      .then((response) => {
-        const bookList = response.data.items;
-        setBooks(bookList);
-        console.log(bookList);
-      }).catch((erro) => {
-        console.log(erro);
-      });
+    if (book) {
+      axios.get(`${apiUrl}/volumes?q=${book}`)
+        .then((response) => {
+          const bookList = response.data.items;
+          setBooks(bookList);
+        }).catch((erro) => {
+          console.log(erro);
+        });
+    }
   };
 
   return (

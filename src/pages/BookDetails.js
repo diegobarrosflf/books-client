@@ -8,11 +8,30 @@ import BookProfile from 'src/components/bookDetails/BookProfile';
 import BookProfileDetails from 'src/components/bookDetails/BookProfileDetails';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const BookDetails = () => {
+  const apiUrl = 'https://www.googleapis.com/books/v1';
+  const [details, setDetails] = useState('');
   const { id } = useParams();
 
-  console.log(id);
+  const getBookById = () => {
+    if (id) {
+      axios.get(`${apiUrl}/volumes/${id}`)
+        .then((response) => {
+          console.log('response', response);
+          setDetails(response.data);
+          console.log(details);
+        }).catch((erro) => {
+          console.log(erro);
+        });
+    }
+  };
+
+  useEffect(() => {
+    getBookById();
+  }, []);
 
   return (
     <>
