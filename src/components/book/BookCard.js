@@ -11,7 +11,7 @@ import {
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import GetAppIcon from '@material-ui/icons/GetApp';
 
-const ProductCard = ({ product, ...rest }) => (
+const BookCard = ({ book, ...rest }) => (
   <Card
     sx={{
       display: 'flex',
@@ -29,8 +29,8 @@ const ProductCard = ({ product, ...rest }) => (
         }}
       >
         <Avatar
-          alt="Product"
-          src={product.media}
+          alt="Book"
+          src={book.media}
           variant="square"
         />
       </Box>
@@ -40,14 +40,14 @@ const ProductCard = ({ product, ...rest }) => (
         gutterBottom
         variant="h4"
       >
-        {product.title}
+        {book.title}
       </Typography>
       <Typography
         align="center"
         color="textPrimary"
         variant="body1"
       >
-        {product.description}
+        {book.description}
       </Typography>
     </CardContent>
     <Box sx={{ flexGrow: 1 }} />
@@ -89,7 +89,7 @@ const ProductCard = ({ product, ...rest }) => (
             sx={{ pl: 1 }}
             variant="body2"
           >
-            {product.totalDownloads}
+            {book.totalDownloads}
             {' '}
             Downloads
           </Typography>
@@ -99,8 +99,8 @@ const ProductCard = ({ product, ...rest }) => (
   </Card>
 );
 
-ProductCard.propTypes = {
-  product: PropTypes.object.isRequired
+BookCard.propTypes = {
+  book: PropTypes.object.isRequired
 };
 
-export default ProductCard;
+export default BookCard;

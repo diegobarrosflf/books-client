@@ -25,7 +25,7 @@ const states = [
   }
 ];
 
-const AccountProfileDetails = (props) => {
+const BookProfileDetails = (props) => {
   const [values, setValues] = useState({
     firstName: 'Katarina',
     lastName: 'Smith',
@@ -183,4 +183,4 @@ const AccountProfileDetails = (props) => {
   );
 };
 
-export default AccountProfileDetails;
+export default BookProfileDetails;

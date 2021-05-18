@@ -19,7 +19,7 @@ const user = {
   timezone: 'GTM-7'
 };
 
-const AccountProfile = (props) => (
+const BookProfile = (props) => (
   <Card {...props}>
     <CardContent>
       <Box
@@ -70,4 +70,4 @@ const AccountProfile = (props) => (
   </Card>
 );
 
-export default AccountProfile;
+export default BookProfile;

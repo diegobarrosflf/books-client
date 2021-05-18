@@ -12,7 +12,6 @@ import {
 } from '@material-ui/core';
 import {
   ShoppingBag as ShoppingBagIcon,
-  User as UserIcon
 } from 'react-feather';
 import NavItem from './NavItem';
 
@@ -24,14 +23,9 @@ const user = {
 
 const items = [
   {
-    href: '/app/products',
+    href: '/app/books',
     icon: ShoppingBagIcon,
-    title: 'Products'
-  },
-  {
-    href: '/app/account',
-    icon: UserIcon,
-    title: 'Account'
+    title: 'Books'
   }
 ];
 

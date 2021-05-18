@@ -4,13 +4,13 @@ import {
   Container,
   Grid
 } from '@material-ui/core';
-import AccountProfile from 'src/components/account/AccountProfile';
-import AccountProfileDetails from 'src/components/account/AccountProfileDetails';
+import BookProfile from 'src/components/bookDetails/BookProfile';
+import BookProfileDetails from 'src/components/bookDetails/BookProfileDetails';
 
-const Account = () => (
+const Book = () => (
   <>
     <Helmet>
-      <title>Account | Material Kit</title>
+      <title>Book | Material Kit</title>
     </Helmet>
     <Box
       sx={{
@@ -30,7 +30,7 @@ const Account = () => (
             md={6}
             xs={12}
           >
-            <AccountProfile />
+            <BookProfile />
           </Grid>
           <Grid
             item
@@ -38,7 +38,7 @@ const Account = () => (
             md={6}
             xs={12}
           >
-            <AccountProfileDetails />
+            <BookProfileDetails />
           </Grid>
         </Grid>
       </Container>
@@ -46,4 +46,4 @@ const Account = () => (
   </>
 );
 
-export default Account;
+export default Book;

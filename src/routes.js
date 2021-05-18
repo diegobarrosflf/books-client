@@ -1,18 +1,18 @@
 import { Navigate } from 'react-router-dom';
 import DashboardLayout from 'src/components/DashboardLayout';
 import MainLayout from 'src/components/MainLayout';
-import Account from 'src/pages/Account';
+import BookDetails from 'src/pages/BookDetails';
 import NotFound from 'src/pages/NotFound';
-import ProductList from 'src/pages/ProductList';
+import BookList from 'src/pages/BookList';
 
 const routes = [
   {
     path: 'app',
     element: <DashboardLayout />,
     children: [
-      { path: '', element: <ProductList /> },
-      { path: 'account', element: <Account /> },
-      { path: 'products', element: <ProductList /> },
+      { path: '', element: <BookList /> },
+      { path: 'account', element: <BookDetails /> },
+      { path: 'books', element: <BookList /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },
@@ -21,7 +21,7 @@ const routes = [
     element: <MainLayout />,
     children: [
       { path: '404', element: <NotFound /> },
-      { path: '/', element: <Navigate to="/app/products" /> },
+      { path: '/', element: <Navigate to="/app/books" /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   }

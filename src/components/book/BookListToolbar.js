@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import { Search as SearchIcon } from 'react-feather';
 
-const ProductListToolbar = (props) => (
+const BookListToolbar = (props) => (
   <Box {...props}>
     <Box sx={{ mt: 3 }}>
       <Card>
@@ -28,7 +28,7 @@ const ProductListToolbar = (props) => (
                   </InputAdornment>
                 )
               }}
-              placeholder="Search product"
+              placeholder="Pesquisar livro"
               variant="outlined"
             />
           </Box>
@@ -38,4 +38,4 @@ const ProductListToolbar = (props) => (
   </Box>
 );
 
-export default ProductListToolbar;
+export default BookListToolbar;
