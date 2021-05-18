@@ -20,6 +20,7 @@ const BookList = () => {
       .then((response) => {
         const bookList = response.data.items;
         setBooks(bookList);
+        console.log(bookList);
       }).catch((erro) => {
         console.log(erro);
       });
