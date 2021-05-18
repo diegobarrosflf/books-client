@@ -8,7 +8,7 @@ import {
 import BookListToolbar from 'src/components/book/BookListToolbar';
 import BookCard from 'src/components/book/BookCard';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const BookList = () => {
   const apiUrl = 'https://www.googleapis.com/books/v1';
@@ -18,17 +18,12 @@ const BookList = () => {
   const searchBooks = (book) => {
     axios.get(`${apiUrl}/volumes?q=${book}`)
       .then((response) => {
-        console.log(response.data);
         const bookList = response.data.items;
         setBooks(bookList);
       }).catch((erro) => {
         console.log(erro);
       });
   };
-
-  useEffect(() => {
-    searchBooks('teste');
-  }, []);
 
   return (
     <>
@@ -43,13 +38,13 @@ const BookList = () => {
         }}
       >
         <Container maxWidth={false}>
-          <BookListToolbar />
+          <BookListToolbar searchBooks={searchBooks} />
           <Box sx={{ pt: 3 }}>
             <Grid
               container
               spacing={3}
             >
-              {books.map((book) => (
+              {books && books.map((book) => (
                 <Grid
                   item
                   key={book.id}

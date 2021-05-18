@@ -30,7 +30,9 @@ const BookCard = ({ book, ...rest }) => (
       >
         <Avatar
           alt="Book"
-          src={book.volumeInfo.imageLinks.thumbnail}
+          src={book.volumeInfo && book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail
+            ? book.volumeInfo.imageLinks.thumbnail
+            : null}
           variant="square"
           sx={{
             height: 150,
@@ -44,15 +46,15 @@ const BookCard = ({ book, ...rest }) => (
         gutterBottom
         variant="h4"
       >
-        {book.volumeInfo.title}
+        {book.volumeInfo && book.volumeInfo.title ? book.volumeInfo.title : 'Tìtulo indisponível'}
       </Typography>
       <Typography
         align="center"
         color="textPrimary"
         variant="body1"
       >
-        {book.volumeInfo.description ? book.volumeInfo.description.substring(0, 99) : 'Sem descrição'}
-        {book.volumeInfo.description && book.volumeInfo.description.length > 99 ? '...' : ''}
+        {book.volumeInfo && book.volumeInfo.description ? book.volumeInfo.description.substring(0, 99) : 'Descrição indisponível'}
+        {book.volumeInfo && book.volumeInfo.description && book.volumeInfo.description.length > 99 ? '...' : ''}
       </Typography>
     </CardContent>
     <Box sx={{ flexGrow: 1 }} />
@@ -77,7 +79,7 @@ const BookCard = ({ book, ...rest }) => (
             sx={{ pl: 1 }}
             variant="body2"
           >
-            {book.volumeInfo.publishedDate ? book.volumeInfo.publishedDate : 'Data indisponível'}
+            {book.volumeInfo && book.volumeInfo.publishedDate ? book.volumeInfo.publishedDate : 'Data indisponível'}
           </Typography>
         </Grid>
         <Grid
