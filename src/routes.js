@@ -4,6 +4,7 @@ import MainLayout from 'src/components/MainLayout';
 import BookDetails from 'src/pages/BookDetails';
 import NotFound from 'src/pages/NotFound';
 import BookList from 'src/pages/BookList';
+import BookFavoriteList from 'src/pages/BookFavoriteList';
 
 const routes = [
   {
@@ -13,6 +14,7 @@ const routes = [
       { path: '', element: <BookList /> },
       { path: 'details/:id', element: <BookDetails /> },
       { path: 'books', element: <BookList /> },
+      { path: 'favorites', element: <BookFavoriteList /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },

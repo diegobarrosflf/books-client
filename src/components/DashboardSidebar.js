@@ -26,6 +26,11 @@ const items = [
     href: '/app/books',
     icon: ShoppingBagIcon,
     title: 'Books'
+  },
+  {
+    href: '/app/favorites',
+    icon: ShoppingBagIcon,
+    title: 'Favoritos'
   }
 ];
 
