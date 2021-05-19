@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   Box,
   Button,
@@ -7,40 +7,11 @@ import {
   CardHeader,
   Divider,
   Grid,
-  TextField
+  Typography
 } from '@material-ui/core';
 
-const states = [
-  {
-    value: 'alabama',
-    label: 'Alabama'
-  },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  }
-];
-
-const BookProfileDetails = (props) => {
-  const [values, setValues] = useState({
-    firstName: 'Katarina',
-    lastName: 'Smith',
-    email: 'demo@devias.io',
-    phone: '',
-    state: 'Alabama',
-    country: 'USA'
-  });
-
-  const handleChange = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value
-    });
-  };
+const BookProfileDetails = ({ details, ...props }) => {
+  console.log('');
 
   return (
     <form
@@ -50,8 +21,7 @@ const BookProfileDetails = (props) => {
     >
       <Card>
         <CardHeader
-          subheader="The information can be edited"
-          title="Profile"
+          title="Detalhes"
         />
         <Divider />
         <CardContent>
@@ -61,105 +31,110 @@ const BookProfileDetails = (props) => {
           >
             <Grid
               item
-              md={6}
+              md={12}
               xs={12}
             >
-              <TextField
-                fullWidth
-                helperText="Please specify the first name"
-                label="First name"
-                name="firstName"
-                onChange={handleChange}
-                required
-                value={values.firstName}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Last name"
-                name="lastName"
-                onChange={handleChange}
-                required
-                value={values.lastName}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Email Address"
-                name="email"
-                onChange={handleChange}
-                required
-                value={values.email}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Phone Number"
-                name="phone"
-                onChange={handleChange}
-                type="number"
-                value={values.phone}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Country"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Select State"
-                name="state"
-                onChange={handleChange}
-                required
-                select
-                SelectProps={{ native: true }}
-                value={values.state}
-                variant="outlined"
+              <Typography
+                color="textPrimary"
+                variant="h5"
               >
-                {states.map((option) => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                  >
-                    {option.label}
-                  </option>
-                ))}
-              </TextField>
+                Descrição
+              </Typography>
+              <Typography>
+                {details.volumeInfo && details.volumeInfo.description ? details.volumeInfo.description : 'Descrição indisponível'}
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <Typography
+                color="textPrimary"
+                variant="h5"
+              >
+                Editora
+              </Typography>
+              <Typography>
+                {details.volumeInfo && details.volumeInfo.publisher ? details.volumeInfo.publisher : 'Editora indisponível'}
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <Typography
+                color="textPrimary"
+                variant="h5"
+              >
+                Autor
+              </Typography>
+              <Typography>
+                {details.volumeInfo && details.volumeInfo.authors ? details.volumeInfo.authors : 'Autor indisponivel'}
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <Typography
+                color="textPrimary"
+                variant="h5"
+              >
+                Ano de publicação
+              </Typography>
+              <Typography>
+                {details.volumeInfo && details.volumeInfo.publishedDate ? details.volumeInfo.publishedDate.substring(0, 4) : 'Data indisponível'}
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <Typography
+                color="textPrimary"
+                variant="h5"
+              >
+                Número de páginas
+              </Typography>
+              <Typography>
+                {details.volumeInfo && details.volumeInfo.pageCount ? details.volumeInfo.pageCount : 'Indisponível'}
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <Typography
+                color="textPrimary"
+                variant="h5"
+              >
+                Categoria
+              </Typography>
+              <Typography>
+                {details.volumeInfo && details.volumeInfo.categories ? details.volumeInfo.categories.map((categorie) => (
+                  <Typography key={categorie.id}>{categorie}</Typography>
+                )) : 'Indisponível'}
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <Typography
+                color="textPrimary"
+                variant="h5"
+              >
+                IBSN
+              </Typography>
+              <Typography>
+                {details.volumeInfo && details.volumeInfo.industryIdentifiers ? details.volumeInfo.industryIdentifiers[details.volumeInfo.industryIdentifiers.length - 1].identifier : 'Indisponível'}
+              </Typography>
             </Grid>
           </Grid>
         </CardContent>
@@ -175,12 +150,16 @@ const BookProfileDetails = (props) => {
             color="primary"
             variant="contained"
           >
-            Save details
+            Adicionar aos Favoritos
           </Button>
         </Box>
       </Card>
     </form>
   );
+};
+
+BookProfileDetails.propTypes = {
+  details: PropTypes.object.isRequired
 };
 
 export default BookProfileDetails;

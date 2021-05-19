@@ -20,9 +20,7 @@ const BookDetails = () => {
     if (id) {
       axios.get(`${apiUrl}/volumes/${id}`)
         .then((response) => {
-          console.log('response', response);
           setDetails(response.data);
-          console.log(details);
         }).catch((erro) => {
           console.log(erro);
         });
@@ -56,7 +54,7 @@ const BookDetails = () => {
               md={6}
               xs={12}
             >
-              <BookProfile />
+              <BookProfile details={details} />
             </Grid>
             <Grid
               item
@@ -64,7 +62,7 @@ const BookDetails = () => {
               md={6}
               xs={12}
             >
-              <BookProfileDetails />
+              <BookProfileDetails details={details} />
             </Grid>
           </Grid>
         </Container>

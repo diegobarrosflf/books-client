@@ -1,25 +1,13 @@
-import moment from 'moment';
+import PropTypes from 'prop-types';
 import {
   Avatar,
   Box,
-  Button,
   Card,
-  CardActions,
   CardContent,
-  Divider,
   Typography
 } from '@material-ui/core';
 
-const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  city: 'Los Angeles',
-  country: 'USA',
-  jobTitle: 'Senior Developer',
-  name: 'Katarina Smith',
-  timezone: 'GTM-7'
-};
-
-const BookProfile = (props) => (
+const BookProfile = ({ details, ...props }) => (
   <Card {...props}>
     <CardContent>
       <Box
@@ -30,44 +18,36 @@ const BookProfile = (props) => (
         }}
       >
         <Avatar
-          src={user.avatar}
+          variant="square"
+          src={details.volumeInfo && details.volumeInfo.imageLinks && details.volumeInfo.imageLinks.thumbnail
+            ? details.volumeInfo.imageLinks.thumbnail
+            : null}
           sx={{
-            height: 100,
-            width: 100
+            height: 250,
+            width: 180
           }}
         />
         <Typography
+          align="center"
           color="textPrimary"
           gutterBottom
           variant="h3"
         >
-          {user.name}
+          {details.volumeInfo && details.volumeInfo.title ? details.volumeInfo.title : 'Tìtulo indisponível'}
         </Typography>
         <Typography
           color="textSecondary"
           variant="body1"
         >
-          {`${user.city} ${user.country}`}
-        </Typography>
-        <Typography
-          color="textSecondary"
-          variant="body1"
-        >
-          {`${moment().format('hh:mm A')} ${user.timezone}`}
+          {details.volumeInfo && details.volumeInfo.publishedDate ? details.volumeInfo.publishedDate.substring(0, 4) : 'Data indisponível'}
         </Typography>
       </Box>
     </CardContent>
-    <Divider />
-    <CardActions>
-      <Button
-        color="primary"
-        fullWidth
-        variant="text"
-      >
-        Upload picture
-      </Button>
-    </CardActions>
   </Card>
 );
+
+BookProfile.propTypes = {
+  details: PropTypes.object.isRequired
+};
 
 export default BookProfile;
