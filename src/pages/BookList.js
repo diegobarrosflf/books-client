@@ -16,13 +16,21 @@ const BookList = () => {
   const [searchValue, setSearchValue] = useState('');
   const [page, setPage] = useState(0);
   const [books, setBooks] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const maxResults = 18;
 
   const searchBooks = (book) => {
     setSearchValue(book);
     if (book) {
-      axios.get(`${apiUrl}/volumes?q=${book}&startIndex=0&maxResults=6`)
+      axios.get(`${apiUrl}/volumes?q=${book}&startIndex=0&maxResults=${maxResults}`)
         .then((response) => {
           const bookList = response.data.items;
+          console.log('bookList', response.data.totalItems);
+          console.log('responde 1', response.data);
+          let qtdPages = (parseInt(response.data.totalItems, 10)) / maxResults;
+          qtdPages = (qtdPages > 10) ? 10 : (qtdPages);
+          console.log('qtdPages', Math.round(qtdPages));
+          setTotalPages(Math.round(qtdPages).toFixed(2));
           setBooks(bookList);
         }).catch((erro) => {
           console.log(erro);
@@ -33,11 +41,14 @@ const BookList = () => {
   const searchBooksPage = (pageIndex) => {
     console.log('searchValue', searchValue);
     console.log('searchBooksPage page', pageIndex);
-    const virtualPage = 7 * (pageIndex - 1);
+    const startIndex = (maxResults * (pageIndex - 1) <= 0)
+      ? 0
+      : (maxResults * (pageIndex - 1));
+    console.log('startIndex', startIndex);
     if (searchValue.length > 0) {
-      console.log('virtualPage', virtualPage);
-      axios.get(`${apiUrl}/volumes?q=${searchValue}&startIndex=${virtualPage}&maxResults=6`)
+      axios.get(`${apiUrl}/volumes?q=${searchValue}&startIndex=${startIndex}&maxResults=${maxResults}`)
         .then((response) => {
+          console.log('responde 2', response.data);
           const bookList = response.data.items;
           setBooks(bookList);
         }).catch((erro) => {
@@ -92,7 +103,7 @@ const BookList = () => {
           >
             <Pagination
               color="primary"
-              count={3}
+              count={totalPages}
               size="small"
               page={page}
               onChange={handleChange}
