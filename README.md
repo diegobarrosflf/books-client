@@ -6,7 +6,7 @@ Autor: Diego Barros
 
 Este projeto foi construído utilizando React v17.0.2 e Material-UI template disponível no link a seguir:
 
-[![Material Kit - React](https://s3.eu-west-2.amazonaws.com/devias/products/react-material-dashboard/react-material-free-xl.jpg)](https://react-material-dashboard.devias.io/)
+![Material Kit - React](https://react-material-dashboard.devias.io/)
 
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
