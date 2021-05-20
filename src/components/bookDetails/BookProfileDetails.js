@@ -20,7 +20,6 @@ const BookProfileDetails = ({ details, ...props }) => {
     if (!booksId.includes(details.id)) {
       books.push(details);
     }
-    console.log('books', books);
     localStorage.setItem('BOOKS', JSON.stringify(books));
   };
 

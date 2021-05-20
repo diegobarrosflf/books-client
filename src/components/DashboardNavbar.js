@@ -1,6 +1,7 @@
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Hidden from '@material-ui/core/Hidden';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
 import {
   AppBar,
   Box,
@@ -8,7 +9,6 @@ import {
   Toolbar
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import Logo from './Logo';
 
 const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => (
   <AppBar
@@ -17,7 +17,7 @@ const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => (
   >
     <Toolbar>
       <RouterLink to="/">
-        <Logo />
+        <MenuBookIcon style={{ fill: 'white' }} />
       </RouterLink>
       <Box sx={{ flexGrow: 1 }} />
       <Hidden lgDown>

@@ -15,7 +15,7 @@ import {
 import NavItem from './NavItem';
 
 const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
+  avatar: '/static/images/perfil.png',
   jobTitle: 'Junior Developer',
   name: 'Diego Barros'
 };
