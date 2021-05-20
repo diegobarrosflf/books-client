@@ -15,7 +15,7 @@ const BookListToolbar = (props) => {
 
   const search = (term) => {
     setQuery(term);
-    props.searchBooks(query);
+    props.searchBooks(term);
   };
 
   return (

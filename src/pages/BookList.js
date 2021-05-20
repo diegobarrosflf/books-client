@@ -13,11 +13,14 @@ import { useState } from 'react';
 const BookList = () => {
   const apiUrl = 'https://www.googleapis.com/books/v1';
 
+  const [searchValue, setSearchValue] = useState('');
+  const [page, setPage] = useState(0);
   const [books, setBooks] = useState([]);
 
   const searchBooks = (book) => {
+    setSearchValue(book);
     if (book) {
-      axios.get(`${apiUrl}/volumes?q=${book}`)
+      axios.get(`${apiUrl}/volumes?q=${book}&startIndex=0&maxResults=6`)
         .then((response) => {
           const bookList = response.data.items;
           setBooks(bookList);
@@ -25,6 +28,27 @@ const BookList = () => {
           console.log(erro);
         });
     }
+  };
+
+  const searchBooksPage = (pageIndex) => {
+    console.log('searchValue', searchValue);
+    console.log('searchBooksPage page', pageIndex);
+    const virtualPage = 7 * (pageIndex - 1);
+    if (searchValue.length > 0) {
+      console.log('virtualPage', virtualPage);
+      axios.get(`${apiUrl}/volumes?q=${searchValue}&startIndex=${virtualPage}&maxResults=6`)
+        .then((response) => {
+          const bookList = response.data.items;
+          setBooks(bookList);
+        }).catch((erro) => {
+          console.log(erro);
+        });
+    }
+  };
+
+  const handleChange = (event, value) => {
+    setPage(value);
+    searchBooksPage(value);
   };
 
   return (
@@ -70,6 +94,8 @@ const BookList = () => {
               color="primary"
               count={3}
               size="small"
+              page={page}
+              onChange={handleChange}
             />
           </Box>
         </Container>
