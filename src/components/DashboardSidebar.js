@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Hidden from '@material-ui/core/Hidden';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import SearchIcon from '@material-ui/icons/Search';
 import {
   Avatar,
   Box,
@@ -10,9 +12,6 @@ import {
   List,
   Typography
 } from '@material-ui/core';
-import {
-  ShoppingBag as ShoppingBagIcon,
-} from 'react-feather';
 import NavItem from './NavItem';
 
 const user = {
@@ -24,12 +23,12 @@ const user = {
 const items = [
   {
     href: '/app/books',
-    icon: ShoppingBagIcon,
-    title: 'Books'
+    icon: SearchIcon,
+    title: 'Pesquisar'
   },
   {
     href: '/app/favorites',
-    icon: ShoppingBagIcon,
+    icon: FavoriteIcon,
     title: 'Favoritos'
   }
 ];

@@ -15,7 +15,7 @@ import ReadMoreIcon from '@material-ui/icons/ReadMore';
 
 const BookCard = ({ book, ...rest }) => {
   const path = `/app/details/${book.id}`;
-  console.log(book);
+
   return (
     <Card
       sx={{

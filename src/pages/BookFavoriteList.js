@@ -5,27 +5,15 @@ import {
   Grid,
   Pagination
 } from '@material-ui/core';
-import BookListToolbar from 'src/components/book/BookListToolbar';
 import BookCard from 'src/components/book/BookCard';
-import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const BookFavoriteList = () => {
-  const apiUrl = 'https://www.googleapis.com/books/v1';
-
   const [books, setBooks] = useState([]);
 
-  const searchBooks = (book) => {
-    if (book) {
-      axios.get(`${apiUrl}/volumes?q=${book}`)
-        .then((response) => {
-          const bookList = response.data.items;
-          setBooks(bookList);
-        }).catch((erro) => {
-          console.log(erro);
-        });
-    }
-  };
+  useEffect(() => {
+    setBooks(JSON.parse(localStorage.getItem('BOOKS')));
+  }, []);
 
   return (
     <>
@@ -40,7 +28,6 @@ const BookFavoriteList = () => {
         }}
       >
         <Container maxWidth={false}>
-          <BookListToolbar searchBooks={searchBooks} />
           <Box sx={{ pt: 3 }}>
             <Grid
               container

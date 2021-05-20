@@ -11,7 +11,18 @@ import {
 } from '@material-ui/core';
 
 const BookProfileDetails = ({ details, ...props }) => {
-  console.log('');
+  const addFavoritos = () => {
+    let books = localStorage.getItem('BOOKS');
+    books = !books ? [] : JSON.parse(books);
+
+    const booksId = books.map((book) => book.id);
+
+    if (!booksId.includes(details.id)) {
+      books.push(details);
+    }
+    console.log('books', books);
+    localStorage.setItem('BOOKS', JSON.stringify(books));
+  };
 
   return (
     <form
@@ -149,6 +160,7 @@ const BookProfileDetails = ({ details, ...props }) => {
           <Button
             color="primary"
             variant="contained"
+            onClick={() => addFavoritos()}
           >
             Adicionar aos Favoritos
           </Button>
